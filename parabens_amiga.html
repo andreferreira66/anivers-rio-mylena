@@ -65,14 +65,12 @@
 
     <div class="row">
       <input id="inputNome" placeholder="Nome dela (ex: Ju)" />
-      <input id="inputExtra" placeholder="Um detalhe (ex: 'minha dupla de risadas')" />
+      <input id="inputExtra" placeholder="Um detalhe (ex: 'obrigado pela amizade')" />
       <button onclick="atualizar()">Atualizar</button>
       <button onclick="copiarLink()">Copiar link</button>
     </div>
 
-    <p class="small">
-      Publique no GitHub Pages e compartilhe o link 💛
-    </p>
+    <p class="small">Publique no GitHub Pages e compartilhe o link 💛</p>
   </div>
 
   <script>
@@ -112,7 +110,7 @@
       const url = location.href;
       try{
         await navigator.clipboard.writeText(url);
-        alert("Link copiado! Agora é só mandar pra ela 😄");
+        alert("Link copiado! Agora é só mandar 😄");
       }catch(e){
         prompt("Copia aqui:", url);
       }
