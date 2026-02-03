@@ -34,14 +34,8 @@
       position:relative;
     }
 
-    .float{
-      animation: float 2.4s ease-in-out infinite alternate;
-    }
-
-    @keyframes float{
-      from{transform: translateY(0);}
-      to{transform: translateY(-12px);}
-    }
+    .float{ animation: float 2.4s ease-in-out infinite alternate; }
+    @keyframes float{ from{transform: translateY(0);} to{transform: translateY(-12px);} }
 
     h1{
       font-size: clamp(34px, 5vw, 58px);
@@ -67,7 +61,7 @@
     }
 
     .footer{
-      margin-top: 20px;
+      margin-top: 22px;
       font-size: 14px;
       color:#374151;
     }
@@ -84,7 +78,6 @@
       cursor:pointer;
       box-shadow:0 12px 28px rgba(255,77,109,.5);
     }
-
     button:hover{opacity:.9}
 
     canvas{
@@ -105,34 +98,35 @@
   <h1 class="float">Feliz aniversário, Mylena! 🥳🎂🎉</h1>
 
   <div class="subtitle">
-    A paulistinha preferida chegou no nível +1 😎🔥
+    A paulistinha preferida acaba de upar de nível 😎🔥
   </div>
 
-  <p class="msg">
-    Hoje o dia é oficialmente seu, então pode tudo:  
-    rir alto 😂, zoar sem limites 🤡, comer bolo sem culpa 🍰🍩  
-    e fingir maturidade só quando necessário 😌✨  
+  <p class="msg" id="msg">
+    Hoje é oficialmente o seu dia, então tá liberado:  
+    rir alto 😂, zoar sem critério 🤡, comer bolo sem culpa 🍰🍩  
+    e fingir responsabilidade só quando precisar 😌✨  
     <br><br>
-    Você é daquelas pessoas que deixam tudo mais leve só existindo —
-    amizade de verdade, daquelas que importam pra caralho 🫂💛  
+    Você é daquelas pessoas que fazem diferença de verdade —  
+    amizade leve, sincera e que a gente leva pra vida 🫂💛  
     <br><br>
-    E ó 👀: que venha **muito sucesso na Fisio** 🧠💪📚  
-    que você arrebente nas práticas, nas provas, nos estágios  
-    e vire aquela profissional braba que todo mundo respeita 😤🔥🩺
+    Que a Fisio venha com tudo 🧠💪📚  
+    que você arrebente nas práticas, nos estágios, nas provas  
+    e vire essa profissional braba que todo mundo sabe que você vai ser 😤🔥🩺
   </p>
 
   <div class="emoji-line">
     🎉🎂🥳😂💖✨🫶🎊💪🧠🩺📚🔥🍰🎈🎁🤪
   </div>
 
-  <button onclick="startConfetti()">APERTE PRA COMEÇAR O CAOS 🎉🤣</button>
+  <button id="btn" onclick="btnClick()">CLICA AQUI E DEIXA O CAOS COMEÇAR 🎉🤣</button>
 
   <div class="footer">
-    Feito com carinho (e zero maturidade) 💝😎
+    feito com carinho por <strong>Andrezinho</strong> e o <strong>ChatGPT</strong> 😅💝
   </div>
 </div>
 
 <script>
+  // ===== Confete =====
   const canvas = document.getElementById("confetti");
   const ctx = canvas.getContext("2d");
   let pieces = [];
@@ -146,9 +140,8 @@
   resize();
 
   function startConfetti(){
-    if(running) return;
     running = true;
-    pieces = Array.from({length: 220}, () => ({
+    pieces = Array.from({length: 240}, () => ({
       x: Math.random()*canvas.width,
       y: Math.random()*canvas.height - canvas.height,
       r: Math.random()*6 + 4,
@@ -156,6 +149,8 @@
       s: Math.random()*3 + 2
     }));
     animate();
+    // para depois de um tempo
+    setTimeout(()=>{ running = false; }, 3500);
   }
 
   function animate(){
@@ -169,8 +164,53 @@
       if(p.y > canvas.height) p.y = -10;
     });
     if(running) requestAnimationFrame(animate);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+
+  // ===== Opção 6: botão troll em etapas =====
+  let step = 0;
+
+  function btnClick(){
+    const btn = document.getElementById("btn");
+    const msg = document.getElementById("msg");
+
+    step++;
+
+    if(step === 1){
+      btn.textContent = "Clica de novo 😈👉";
+      msg.innerHTML = "Hmm… tá achando que é só isso? 👀😂";
+      return;
+    }
+
+    if(step === 2){
+      btn.textContent = "Agora é sério, vai 😤🎂";
+      msg.innerHTML = "Ok, ok… agora vai de verdade. (eu acho) 🤡🎉";
+      return;
+    }
+
+    if(step === 3){
+      btn.textContent = "Era mentira KKKKK 🤡";
+      msg.innerHTML = "KKKKKK peguei! 🤣🤣🤣 <br>Mas calma que AGORA sim vem a parte boa 😎✨";
+      return;
+    }
+
+    // step 4+ => festa final
+    btn.textContent = "Tá bom, já entendi 😂✅";
+    btn.disabled = true;
+    btn.style.opacity = ".75";
+    btn.style.cursor = "default";
+
+    msg.innerHTML =
+      "AGORA SIM: FELIZ ANIVERSÁRIO, MYLENA!!! 🥳🎂🎉🎈🎊<br><br>" +
+      "Você é minha <strong>paulistinha preferida</strong> mesmo 😎🫶 " +
+      "Te desejo um ano absurdo de bom: saúde, dinheiro, risadas e zero estresse (mentira, um pouco de caos faz parte) 🤡😂<br><br>" +
+      "E na Fisio: vai voar, tá? 🧠💪📚🩺🔥 " +
+      "Sucesso demais, futura fisio braba! 😤✨";
+
+    startConfetti();
   }
 </script>
 
 </body>
 </html>
+
