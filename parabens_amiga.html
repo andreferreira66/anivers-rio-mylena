@@ -149,7 +149,6 @@
       s: Math.random()*3 + 2
     }));
     animate();
-    // para depois de um tempo
     setTimeout(()=>{ running = false; }, 3500);
   }
 
@@ -167,7 +166,7 @@
     else ctx.clearRect(0,0,canvas.width,canvas.height);
   }
 
-  // ===== Opção 6: botão troll em etapas =====
+  // ===== Botão troll em etapas (Opção 6) =====
   let step = 0;
 
   function btnClick(){
@@ -194,7 +193,7 @@
       return;
     }
 
-    // step 4+ => festa final
+    // step 4 (final) => festa + link
     btn.textContent = "Tá bom, já entendi 😂✅";
     btn.disabled = true;
     btn.style.opacity = ".75";
@@ -203,9 +202,10 @@
     msg.innerHTML =
       "AGORA SIM: FELIZ ANIVERSÁRIO, MYLENA!!! 🥳🎂🎉🎈🎊<br><br>" +
       "Você é minha <strong>paulistinha preferida</strong> mesmo 😎🫶 " +
-      "Te desejo um ano absurdo de bom: saúde, dinheiro, risadas e zero estresse (mentira, um pouco de caos faz parte) 🤡😂<br><br>" +
-      "E na Fisio: vai voar, tá? 🧠💪📚🩺🔥 " +
-      "Sucesso demais, futura fisio braba! 😤✨";
+      "Te desejo um ano absurdo de bom: risadas, sucesso e zero estresse (mentira, um pouco vai 😂)<br><br>" +
+      "E na Fisio: vai voar, futura fisio braba! 🧠💪🔥🩺";
+
+    window.open("https://vt.tiktok.com/ZSaGTfywW/", "_blank");
 
     startConfetti();
   }
